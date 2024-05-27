@@ -3,7 +3,7 @@
 Only one file (device.js) need to be included.
 
 Example: 
-https://joyqi.github.io/mobile-device-js/example.html
+[https://pm-vishal-chougule.github.io/mobile-device-js/example.html]
 
 ## MobileDevice.getGlRenderer()
 
