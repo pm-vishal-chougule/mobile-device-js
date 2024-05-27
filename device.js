@@ -4,44 +4,24 @@
     glRenderer,
     models,
     devices = [
-      ["a7", "640x1136", ["iPhone 5", "iPhone 5s"]],
-      ["a7", "1536x2048", ["iPad Air", "iPad Mini 2", "iPad Mini 3"]],
-      ["a8", "640x1136", ["iPod touch (6th gen)"]],
-      ["a8", "750x1334", ["iPhone 6"]],
-      ["a8", "1242x2208", ["iPhone 6 Plus"]],
-      ["a8", "1536x2048", ["iPad Air 2", "iPad Mini 4"]],
-      ["a9", "640x1136", ["iPhone SE"]],
-      ["a9", "750x1334", ["iPhone 6s"]],
-      ["a9", "1242x2208", ["iPhone 6s Plus"]],
-      ["a9x", "1536x2048", ["iPad Pro (1st gen 9.7-inch)"]],
-      ["a9x", "2048x2732", ["iPad Pro (1st gen 12.9-inch)"]],
-      ["a10", "750x1334", ["iPhone 7"]],
-      ["a10", "1242x2208", ["iPhone 7 Plus"]],
-      ["a10x", "1668x2224", ["iPad Pro (2th gen 10.5-inch)"]],
-      ["a10x", "2048x2732", ["iPad Pro (2th gen 12.9-inch)"]],
-      ["a11", "750x1334", ["iPhone 8"]],
-      ["a11", "1242x2208", ["iPhone 8 Plus"]],
-      ["a11", "1125x2436", ["iPhone X"]],
-      ["a12", "828x1792", ["iPhone Xr"]],
-      ["a12", "1125x2436", ["iPhone Xs"]],
-      ["a12", "1242x2688", ["iPhone Xs Max"]],
-      ["a12x", "1668x2388", ["iPad Pro (3rd gen 11-inch)"]],
-      ["a12x", "2048x2732", ["iPad Pro (3rd gen 12.9-inch)"]],
-      ["a13", "828x1792", ["iPhone 11"]],
-      ["a13", "1125x2436", ["iPhone 11 Pro"]],
-      ["a13", "1242x2688", ["iPhone 11 Pro Max"]],
-      ["a14", "1170x2532", ["iPhone 12", "iPhone 12 Pro"]],
-      ["a14", "1284x2778", ["iPhone 12 Pro Max"]],
-      ["a14", "1080x2340", ["iPhone 12 Mini"]],
-      ["a15", "1170x2532", ["iPhone 13", "iPhone 13 Pro"]],
-      ["a15", "1284x2778", ["iPhone 13 Pro Max"]],
-      ["a15", "1080x2340", ["iPhone 13 Mini"]],
-      ["a15", "1170x2532", ["iPhone 14", "iPhone 14 Pro"]],
-      ["a15", "1284x2778", ["iPhone 14 Pro Max"]],
-      ["a15", "1080x2340", ["iPhone 14 Plus"]],
-      ["a16", "1170x2532", ["iPhone 15", "iPhone 15 Pro"]],
-      ["a16", "1284x2778", ["iPhone 15 Pro Max"]],
-      ["a16", "1080x2340", ["iPhone 15 Plus"]],
+      ["Apple GPU", "1242x2688", ["iPhone Xs Max"]],
+      ["Apple GPU", "1668x2388", ["iPad Pro (3rd gen 11-inch)"]],
+      ["Apple GPU", "2048x2732", ["iPad Pro (3rd gen 12.9-inch)"]],
+      ["Apple GPU", "828x1792", ["iPhone 11"]],
+      ["Apple GPU", "1125x2436", ["iPhone 11 Pro"]],
+      ["Apple GPU", "1242x2688", ["iPhone 11 Pro Max"]],
+      ["Apple GPU", "1170x2532", ["iPhone 12", "iPhone 12 Pro"]],
+      ["Apple GPU", "1284x2778", ["iPhone 12 Pro Max"]],
+      ["Apple GPU", "1080x2340", ["iPhone 12 Mini"]],
+      ["Apple GPU", "1170x2532", ["iPhone 13", "iPhone 13 Pro"]],
+      ["Apple GPU", "1284x2778", ["iPhone 13 Pro Max"]],
+      ["Apple GPU", "1080x2340", ["iPhone 13 Mini"]],
+      ["Apple GPU", "1170x2532", ["iPhone 14", "iPhone 14 Pro"]],
+      ["Apple GPU", "1284x2778", ["iPhone 14 Pro Max"]],
+      ["Apple GPU", "1080x2340", ["iPhone 14 Plus"]],
+      ["Apple GPU", "1170x2532", ["iPhone 15", "iPhone 15 Pro"]],
+      ["Apple GPU", "1284x2778", ["iPhone 15 Pro Max"]],
+      ["Apple GPU", "1080x2340", ["iPhone 15 Plus"]],
     ];
 
   function getCanvas() {
@@ -83,24 +63,24 @@
 
   function getModels() {
     if (models == null) {
-      var gpu = getGlRenderer(),
-        matches = gpu.match(/^apple\s+([_a-z0-9-]+)\s+gpu$/i),
-        res = getResolution();
+      console.log("models :" + models);
+      var gpu = getGlRenderer();
+      matches = gpu.match(/Apple\sGPU/i);
+      res = getResolution();
+      console.log("matches :" + matches);
 
       models = ["unknown"];
 
       if (matches) {
         for (var i = 0; i < devices.length; i++) {
           var device = devices[i];
-
-          if (matches[1].toLowerCase() == device[0] && res == device[1]) {
+          if (matches == device[0] && res == device[1]) {
             models = device[2];
             break;
           }
         }
       }
     }
-
     return models;
   }
 
